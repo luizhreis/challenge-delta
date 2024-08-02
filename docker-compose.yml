@@ -29,6 +29,18 @@ services:
     env_file:
       - .env
 
+  frontend:
+    build:
+      context: ./app/frontend
+    container_name: frontend-container
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: 8080
+      API_HOST: http://backend-container:3000
+    depends_on:
+      - backend
+
 volumes:
   mysql-data:
   redis_data:
