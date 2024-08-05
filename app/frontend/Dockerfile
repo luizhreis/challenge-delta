@@ -1,19 +1,20 @@
-FROM gcr.io/distroless/nodejs22-debian12:latest-amd64
-
 FROM node:20 AS build-env
-
-COPY . /app
 
 WORKDIR /app
 
-RUN npm i --package-lock-only
+COPY package.json ./
 
-RUN npm ci --omit=dev
+RUN npm i --package-lock-only \
+    && npm ci --omit=dev
+
+COPY . .
 
 FROM gcr.io/distroless/nodejs22-debian12:latest-amd64
 
 COPY --from=build-env /app /app
 
 WORKDIR /app
+
+USER 1511:1511
 
 CMD ["./bin/www"]
