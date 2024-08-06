@@ -5,6 +5,5 @@ metadata:
 data:
   MYSQL_DATABASE: database
   PORT: "3000"
-  DATABASE_URL: mysql:password@tcp(mysql:3306)/database
   REDIS_URL: redis:6379
   API_HOST: http://backend:3000
