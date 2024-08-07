@@ -22,6 +22,7 @@ type Response struct {
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/api/status", statusHandler).Methods("GET")
+	r.HandleFunc("/liveness", livenessHandler).Methods("GET")
 	http.Handle("/", r)
 
 	port := os.Getenv("PORT")
@@ -57,6 +58,11 @@ func checkRedis() error {
 	}
 
 	return nil
+}
+
+func livenessHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("OK"))
 }
 
 func statusHandler(w http.ResponseWriter, r *http.Request) {
