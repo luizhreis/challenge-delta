@@ -31,9 +31,14 @@ spec:
               key: DATABASE_URL
         - name: REDIS_URL
           valueFrom:
-            configMapKeyRef:
-              name: app-config
+            secretKeyRef:
+              name: redis-secret
               key: REDIS_URL
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: redis-secret
+              key: REDIS_PASSWORD
         resources:
           requests:
             memory: "256Mi"

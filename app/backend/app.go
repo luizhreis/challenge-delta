@@ -47,7 +47,7 @@ func checkMySQL() (string, error) {
 func checkRedis() error {
 	client := redis.NewClient(&redis.Options{
 		Addr:     os.Getenv("REDIS_URL"),
-		Password: "",
+		Password: os.Getenv("REDIS_PASSWORD"),
 		DB:       0,
 	})
 

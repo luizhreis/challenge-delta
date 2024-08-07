@@ -10,6 +10,7 @@ docker build -t frontend-container:20240805 ./app/frontend/
 kubectl apply -f k8s/persistent-volume-claim.yml
 kubectl apply -f k8s/app-config.yml
 kubectl apply -f k8s/mysql-secret.yml
+kubectl apply -f k8s/redis-secret.yml
 kubectl apply -f k8s/mysql-deployment.yml
 kubectl apply -f k8s/mysql-service.yml
 kubectl apply -f k8s/redis-deployment.yml
